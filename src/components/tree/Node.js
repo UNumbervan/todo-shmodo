@@ -23,7 +23,7 @@ export class Node extends React.Component {
             : '';
 
         return (
-            <div className="text-node" onClick={this.props.onClick}>
+            <div className={`text-node ${this.getClass()}`} onClick={this.props.onClick}>
                 <span>{this.props.data.text}</span>
                 <div className="add-subcategory-wrapper">
                     <button onClick={this.toggleAddCategoryInput.bind(this)}>+</button>
@@ -31,6 +31,10 @@ export class Node extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    getClass() {
+        return this.props.selected ? 'selected' : '';
     }
 
     getAddCategoryInput() {

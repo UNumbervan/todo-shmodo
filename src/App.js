@@ -14,7 +14,7 @@ injectTapEventPlugin();
 
 import {createSelector} from 'reselect';
 
-const App = ({dispatch, categories, children}) => (
+const App = ({dispatch, categories, children, currentCategory}) => (
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
         <div className="App">
             <AppBar
@@ -23,7 +23,7 @@ const App = ({dispatch, categories, children}) => (
             <AddInput onAdd={(text) => dispatch(createCategory(text))}></AddInput>
             <div className="container">
                 <div className="sidetree-container">
-                    <Tree component={Node} data={categories}></Tree>
+                    <Tree component={Node} currentCategory={currentCategory} data={categories}></Tree>
                 </div>
                 <div className="body">
                     {children}
@@ -60,8 +60,9 @@ function treeorizeCategories({present: categories}) {
     return {children: result, text: '', id: ''};
 };
 
-const mapStateToProps = (state) => ({
-    categories: getCategoriesTreeorized(state)
+const mapStateToProps = (state, props) => ({
+    categories: getCategoriesTreeorized(state),
+    currentCategory: props.params.category
 });
 
 export default connect(

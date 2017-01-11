@@ -11,7 +11,7 @@ export const TodosList = ({todos, onTodoToggled, onTodoEdit}) => {
     );
 
     return (
-        <div className="todos-container">
+        <div className="todo-items-container">
             {todosElems}
         </div>
     );

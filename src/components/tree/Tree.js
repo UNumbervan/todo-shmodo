@@ -1,14 +1,19 @@
 import React, {PropTypes} from 'react';
 
-export function Tree({data, component: Component}) {
+export function Tree({data, component: Component, currentCategory}) {
     const children = data.children && data.children.map((child) => {
-            return <Tree data={child} key={child.id} component={Component}></Tree>;
+            return <Tree
+                currentCategory={currentCategory}
+                data={child}
+                key={child.id}
+                component={Component}>
+            </Tree>;
         });
 
 
     return (
         <div className="node">
-            <Component data={data}></Component>
+            <Component data={data} currentCategory={currentCategory}></Component>
             <div className="children-container">
                 {children}
             </div>
