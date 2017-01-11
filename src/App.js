@@ -1,30 +1,68 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './App.css';
 import AppBar from 'material-ui/AppBar';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import Tree from 'components/tree/Tree';
-import Node from 'components/tree/Node';
+import {Tree} from './components/tree/Tree';
+import {Node} from './components/tree/Node';
+import {AddCategoryInput} from './components/add-category/add-category-input';
+import {connect} from 'react-redux';
+import {createCategory} from './actions';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
-class App extends Component {
-    render() {
-        return (
-            <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-                <div className="App">
-                    <AppBar
-                        title="Todo-Shmodo"
-                    />
-                    <div className="container">
-                        <div className="sidetree-container">
-                            <Tree component={Node} data={{text: 'as', children: [{}]}}></Tree>
-                        </div>
-                        <div className="body"></div>
-                    </div>
+import {createSelector} from 'reselect'
+
+const App = ({dispatch, categories}) => (
+    <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+        <div className="App">
+            <AppBar
+                title="Todo-Shmodo"
+            />
+            <AddCategoryInput onAdd={(text) => dispatch(createCategory(text))}>
+            </AddCategoryInput>
+            <div className="container">
+                <div className="sidetree-container">
+                    <Tree component={Node} data={categories}></Tree>
                 </div>
-            </MuiThemeProvider>
-        );
-    }
-}
+                <div className="body"></div>
+            </div>
+        </div>
+    </MuiThemeProvider>
+);
 
-export default App;
+const getCategoriesTreeorized = createSelector(
+    state => state.categories,
+    treeorizeCategories
+);
+
+function treeorizeCategories({present: categories}) {
+    const map = categories
+        .reduce((res, category) => {
+            const copy = {...category};
+            copy.children = [];
+            return Object.assign(res, {[category.id]: copy})
+        }, {});
+
+    const result = [];
+
+    categories.forEach(category => {
+        if (category.parent) {
+            const parent = map[category.parent];
+            parent.children.push(map[category.id]);
+        } else {
+            result.push(map[category.id]);
+        }
+    });
+
+    return {children: result, text: '', id: ''};
+};
+
+const mapStateToProps = (state) => ({
+    categories: getCategoriesTreeorized(state)
+});
+
+export default connect(
+    mapStateToProps
+)(App);

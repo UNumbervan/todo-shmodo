@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RTProjectComponent">
+    <option name="rtExecutable" value="/usr/local/bin/rt" />
+    <option name="nodeInterpreter" value="/usr/local/bin/node" />
+    <option name="targetVersion" value="15.0.1" />
+    <option name="pluginEnabled" value="true" />
+    <option name="modules" value="es6" />
+    <option name="groupController" value="false" />
+    <option name="groupOther" value="false" />
+    <option name="watchAndCompileRT" value="false" />
+  </component>
+</project>

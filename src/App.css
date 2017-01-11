@@ -26,3 +26,11 @@
   width: 100%;
   border: 1px solid black;
 }
+
+.node .children-container {
+  margin-left: 20px;
+}
+
+.text-node {
+  margin: 2px 10px 2px 5px;
+}
