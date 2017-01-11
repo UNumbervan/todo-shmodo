@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 
-export const AddCategoryInput = ({onAdd}) => {
+export const AddInput = ({onAdd}) => {
     let input;
 
     return (
@@ -13,6 +13,6 @@ export const AddCategoryInput = ({onAdd}) => {
     );
 };
 
-AddCategoryInput.propTypes = {
+AddInput.propTypes = {
     onAdd: PropTypes.func.isRequired
 };

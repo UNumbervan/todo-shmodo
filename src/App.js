@@ -5,28 +5,29 @@ import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tree} from './components/tree/Tree';
-import {Node} from './components/tree/Node';
-import {AddCategoryInput} from './components/add-category/add-category-input';
+import Node from './containers/tree/Node';
+import {AddInput} from './components/add-input/add-input';
 import {connect} from 'react-redux';
 import {createCategory} from './actions';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import {createSelector} from 'reselect'
+import {createSelector} from 'reselect';
 
-const App = ({dispatch, categories}) => (
+const App = ({dispatch, categories, children}) => (
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
         <div className="App">
             <AppBar
                 title="Todo-Shmodo"
             />
-            <AddCategoryInput onAdd={(text) => dispatch(createCategory(text))}>
-            </AddCategoryInput>
+            <AddInput onAdd={(text) => dispatch(createCategory(text))}></AddInput>
             <div className="container">
                 <div className="sidetree-container">
                     <Tree component={Node} data={categories}></Tree>
                 </div>
-                <div className="body"></div>
+                <div className="body">
+                    {children}
+                </div>
             </div>
         </div>
     </MuiThemeProvider>

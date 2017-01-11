@@ -6,3 +6,15 @@ export const createCategory = (text, parent = null) => ({
   text,
   parent
 });
+
+export const addTodo = (text, category) => ({
+  type: 'ADD_TODO',
+  id: generateTextId(),
+  text,
+  category
+});
+
+export const toggleTodo = (id) => ({
+  type: 'TOGGLE_TODO',
+  id
+});
