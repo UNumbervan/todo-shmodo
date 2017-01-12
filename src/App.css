@@ -41,12 +41,12 @@
     border-radius: 3px;
 }
 
-.text-node .add-subcategory-wrapper {
+.text-node .action-subcategory-wrapper {
     position: relative;
     display: inline-block;
 }
 
-.text-node .add-subcategory-wrapper .add-subcategory-input {
+.text-node .action-subcategory-wrapper .add-subcategory-input {
     position: absolute;
     top: 15px;
     left: 10px;
@@ -60,6 +60,10 @@
 
 .container .body .todo-items-container {
     margin: 20px;
+}
+
+.container .body .input-button-wrapper {
+    padding: 10px 0 10px 10px;
 }
 
 .container .body .todo-items-container .todo-item {

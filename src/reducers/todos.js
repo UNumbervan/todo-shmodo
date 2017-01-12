@@ -34,6 +34,10 @@ const todos = (state = [], action) => {
       return state.map(t =>
         todo(t, action)
       );
+    case 'CATEGORY_DELETE':
+      return state.filter(t => {
+        return !(action.ids.includes(t.category));
+      });
     default:
       return state
   }

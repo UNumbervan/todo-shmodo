@@ -6,7 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tree} from './components/tree/Tree';
 import Node from './containers/tree/Node';
-import {AddInput} from './components/add-input/add-input';
+import {InputButton} from './components/input-button/input-button';
 import {connect} from 'react-redux';
 import {createCategory} from './actions';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -20,7 +20,7 @@ const App = ({dispatch, categories, children, currentCategory}) => (
             <AppBar
                 title="Todo-Shmodo"
             />
-            <AddInput onAdd={(text) => dispatch(createCategory(text))}></AddInput>
+            <InputButton onButtonClick={(text) => dispatch(createCategory(text))}>Add Category</InputButton>
             <div className="container">
                 <div className="sidetree-container">
                     <Tree component={Node} currentCategory={currentCategory} data={categories}></Tree>

@@ -14,6 +14,7 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
             <Route path="/" component={App}>
+                {/*<Route path="/category/:category/task/:task" component={Task}/>*/}
                 <Route path="/category/:category" component={TodosList}/>
             </Route>
         </Router>

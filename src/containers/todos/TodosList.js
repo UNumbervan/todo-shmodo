@@ -3,7 +3,7 @@ import {TodosList} from './../../components/todos/TodosList';
 import {createSelector} from 'reselect';
 import {toggleTodo, addTodo} from './../../actions';
 import React from 'react';
-import {AddInput} from './../../components/add-input/add-input';
+import {InputButton} from '../../components/input-button/input-button';
 
 
 const FilterTodoList = (props) => {
@@ -11,7 +11,9 @@ const FilterTodoList = (props) => {
 
     return (
         <div>
-            <AddInput onAdd={(text) => dispatch(addTodo(text, category))}></AddInput>
+            <div className="input-button-wrapper">
+                <InputButton onButtonClick={(text) => dispatch(addTodo(text, category))}>Add Task</InputButton>
+            </div>
             <TodosList {...props}
                        onTodoToggled={(id) => dispatch(toggleTodo(id))}>
             </TodosList>

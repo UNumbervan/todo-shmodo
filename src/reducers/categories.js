@@ -9,6 +9,15 @@ const category = (state, {type, text, id, parent}) => {
         text,
         id
       };
+    case 'CATEGORY_EDIT':
+      if (state.id !== id) {
+        return state
+      }
+
+      return {
+        ...state,
+        text,
+      };
     default:
       return state;
   }
@@ -18,12 +27,16 @@ const categories = (state = data, action) => {
   switch (action.type) {
     case 'CATEGORY_CREATE':
       return [
-        ...state,
-        category(undefined, action)
+        category(undefined, action),
+        ...state
       ];
     case 'CATEGORY_DELETE':
       return state
-          .filter(t => t.id !== action.id);
+          .filter(t => !action.ids.includes(t.id));
+    case 'CATEGORY_EDIT':
+      return state.map(t =>
+          category(t, action)
+      );
     default:
       return state;
   }
