@@ -4,7 +4,7 @@ export const TodosList = ({todos, onTodoToggled, onTodoEdit}) => {
     const todosElems = todos.map(
         ({completed, text, id}) =>
             <div className="todo-item" key={id}>
-                <input type="checkbox" value={completed} onChange={() => onTodoToggled(id)}></input>
+                <input type="checkbox" checked={completed} onChange={() => onTodoToggled(id)}></input>
                 <span>{text}</span>
                 <button onClick={() => onTodoEdit(id)}>Edit</button>
             </div>

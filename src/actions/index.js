@@ -35,3 +35,17 @@ export const toggleTodo = (id) => ({
     type: 'TOGGLE_TODO',
     id
 });
+
+export const editTodo = (id, text, completed, description) => ({
+    type: 'EDIT_TODO',
+    id,
+    text,
+    completed,
+    description
+});
+
+export const moveToCategory = (category, task) => ({
+    type: 'MOVE_TASK_TO_CATEGORY',
+    category,
+    id: task
+});

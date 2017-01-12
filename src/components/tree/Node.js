@@ -6,12 +6,15 @@ const nodePropTypes = PropTypes.shape({
     id: PropTypes.string.isRequired,
     onAddCategory: PropTypes.func,
     onEditCategory: PropTypes.func,
-    onDeleteCategory: PropTypes.func
+    onDeleteCategory: PropTypes.func,
+    onMoveToCategory: PropTypes.func
 });
 
 nodePropTypes.children = PropTypes.arrayOf(nodePropTypes);
 
 export class Node extends React.Component {
+    static propTypes = {data: nodePropTypes};
+
     constructor() {
         super();
         this.state = {
@@ -84,7 +87,5 @@ export class Node extends React.Component {
         event && event.stopPropagation();
         this.setState({editCategoryInputVisible: !this.state.editCategoryInputVisible});
     }
-
-    static propTypes = {data: nodePropTypes};
 }
 

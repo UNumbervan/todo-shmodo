@@ -4,6 +4,7 @@ import {createSelector} from 'reselect';
 import {toggleTodo, addTodo} from './../../actions';
 import React from 'react';
 import {InputButton} from '../../components/input-button/input-button';
+import {browserHistory} from 'react-router';
 
 
 const FilterTodoList = (props) => {
@@ -15,7 +16,8 @@ const FilterTodoList = (props) => {
                 <InputButton onButtonClick={(text) => dispatch(addTodo(text, category))}>Add Task</InputButton>
             </div>
             <TodosList {...props}
-                       onTodoToggled={(id) => dispatch(toggleTodo(id))}>
+                       onTodoToggled={(id) => dispatch(toggleTodo(id))}
+                       onTodoEdit={(id) => browserHistory.push(`/category/${category}/task/${id}`)}>
             </TodosList>
         </div>
     );

@@ -1,5 +1,4 @@
 import undoable from 'redux-undo';
-import {data} from './../test-tree-data';
 
 const category = (state, {type, text, id, parent}) => {
   switch (type) {
@@ -23,7 +22,7 @@ const category = (state, {type, text, id, parent}) => {
   }
 };
 
-const categories = (state = data, action) => {
+const categories = (state = [], action) => {
   switch (action.type) {
     case 'CATEGORY_CREATE':
       return [

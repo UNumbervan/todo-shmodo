@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tree} from './components/tree/Tree';
 import Node from './containers/tree/Node';
+import MoveToNode from './containers/tree/MoveToNode';
 import {InputButton} from './components/input-button/input-button';
 import {connect} from 'react-redux';
 import {createCategory} from './actions';
@@ -14,7 +15,7 @@ injectTapEventPlugin();
 
 import {createSelector} from 'reselect';
 
-const App = ({dispatch, categories, children, currentCategory}) => (
+const App = ({dispatch, categories, children, currentCategory, task}) => (
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
         <div className="App">
             <AppBar
@@ -23,7 +24,9 @@ const App = ({dispatch, categories, children, currentCategory}) => (
             <InputButton onButtonClick={(text) => dispatch(createCategory(text))}>Add Category</InputButton>
             <div className="container">
                 <div className="sidetree-container">
-                    <Tree component={Node} currentCategory={currentCategory} data={categories}></Tree>
+                    <Tree component={task ? MoveToNode : Node}
+                          currentTask={task}
+                          currentCategory={currentCategory} data={categories}></Tree>
                 </div>
                 <div className="body">
                     {children}
@@ -62,7 +65,8 @@ function treeorizeCategories({present: categories}) {
 
 const mapStateToProps = (state, props) => ({
     categories: getCategoriesTreeorized(state),
-    currentCategory: props.params.category
+    currentCategory: props.params.category,
+    task: props.params.task
 });
 
 export default connect(

@@ -80,3 +80,16 @@
     flex: 1;
     text-wrap: normal;
 }
+
+.todo-details-wrapper {
+    padding: 20px;
+}
+
+.todo-details-wrapper > * {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.todo-details-wrapper textarea {
+    height: 250px;
+}
