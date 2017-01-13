@@ -26,7 +26,7 @@ export function Tree({data, component: Component, currentCategory, currentTask})
                                    currentCategory={currentCategory}
                                    currentTask={currentTask}>
                         </Component>
-                        < div className="children-container">
+                        <div className="children-container">
                             {children}
                         </div>
                     </div>
