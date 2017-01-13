@@ -13,6 +13,7 @@ import {createCategory} from './actions';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import FilterInput from './containers/filter/FilterInput';
+import UndoRedo from './containers/undo-redo/UndoRedo';
 
 import {createSelector} from 'reselect';
 
@@ -28,7 +29,7 @@ const App = ({
         <div className="App">
             <AppBar
                 title="Todo-Shmodo"
-                showMenuIconButton={false}
+                iconElementLeft={<UndoRedo/>}
                 iconElementRight={<FilterInput filter={filter} showJustDone={showJustDone === 'true'}/>}
             />
             <InputButton
