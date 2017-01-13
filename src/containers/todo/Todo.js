@@ -3,7 +3,7 @@ import {createSelector} from 'reselect';
 import {editTodo} from './../../actions';
 import React from 'react';
 import {Todo} from './../../components/todo/Todo';
-import {browserHistory} from 'react-router';
+import {redirectToPath} from './../../redirect';
 
 
 const TodoContainer = (props) => {
@@ -12,7 +12,7 @@ const TodoContainer = (props) => {
     return (
         <Todo todo={todo}
               onSave={(todo) => onSave(todo, dispatch)}
-              onCancel={() => browserHistory.push(`/category/${category}`)}/>
+              onCancel={() => redirectToPath(`/category/${category}`)}/>
     );
 };
 

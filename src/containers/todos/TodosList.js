@@ -4,39 +4,68 @@ import {createSelector} from 'reselect';
 import {toggleTodo, addTodo} from './../../actions';
 import React from 'react';
 import {InputButton} from '../../components/input-button/input-button';
-import {browserHistory} from 'react-router';
+import {redirectToPath} from './../../redirect';
 
 
 const FilterTodoList = (props) => {
-    const {dispatch, params: {category}} = props;
+    const {
+        dispatch,
+        params: {category},
+    } = props;
 
     return (
         <div>
             <div className="input-button-wrapper">
-                <InputButton onButtonClick={(text) => dispatch(addTodo(text, category))}>Add Task</InputButton>
+                <InputButton
+                    placeholder={'Enter task title'}
+                    onButtonClick={(text) => dispatch(addTodo(text, category))}>
+                    Add Task
+                </InputButton>
             </div>
             <TodosList {...props}
                        onTodoToggled={(id) => dispatch(toggleTodo(id))}
-                       onTodoEdit={(id) => browserHistory.push(`/category/${category}/task/${id}`)}>
+                       onTodoEdit={(id) => redirectToPath(`/category/${category}/task/${id}`)}>
             </TodosList>
         </div>
     );
 };
 
-const filterTodosByCategory = category => todos => {
+const filterTodosByCategory = (todos, category) => {
     return todos.filter(todo =>
         todo.category === category
     );
 };
 
-const getTodosByCategory = category => createSelector(
+const getTodosByCategory = createSelector(
     state => state.todos.present,
-    filterTodosByCategory(category)
+    (state, props) => props.params.category,
+    filterTodosByCategory
+);
+
+const todosFilter = (conditionToApplyFilter, filterCondition) => (todos, filter) => {
+    if (conditionToApplyFilter(filter)) {
+        return todos.filter(filterCondition);
+    }
+
+    return todos;
+}
+
+const filterByDoneSelector = createSelector(
+    getTodosByCategory,
+    (state, props) => props.location.query.showJustDone === 'true',
+    todosFilter(showDone => showDone === true, t => t.completed)
+);
+
+const filterTextSelector = createSelector(
+    filterByDoneSelector,
+    (state, props) => props.location.query.filter,
+    (todos, filterText) => todosFilter(f => f, t => t.text.includes(filterText))(todos, filterText)
 );
 
 const mapStateToProps = (state, props) => ({
-    todos: getTodosByCategory(props.params.category)(state)
+    todos: filterTextSelector(state, props)
 });
+
 
 export default connect(
     mapStateToProps

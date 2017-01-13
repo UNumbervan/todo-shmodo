@@ -12,21 +12,37 @@ import {connect} from 'react-redux';
 import {createCategory} from './actions';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+import FilterInput from './containers/filter/FilterInput';
 
 import {createSelector} from 'reselect';
 
-const App = ({dispatch, categories, children, currentCategory, task}) => (
+const App = ({
+    dispatch,
+    categories,
+    children,
+    currentCategory,
+    task,
+    location: {query: {filter, showJustDone}}
+}) => (
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
         <div className="App">
             <AppBar
                 title="Todo-Shmodo"
+                showMenuIconButton={false}
+                iconElementRight={<FilterInput filter={filter} showJustDone={showJustDone === 'true'}/>}
             />
-            <InputButton onButtonClick={(text) => dispatch(createCategory(text))}>Add Category</InputButton>
+            <InputButton
+                placeholder={'Enter category title'}
+                onButtonClick={(text) => dispatch(createCategory(text))}>
+                Add Category
+            </InputButton>
             <div className="container">
                 <div className="sidetree-container">
                     <Tree component={task ? MoveToNode : Node}
                           currentTask={task}
-                          currentCategory={currentCategory} data={categories}></Tree>
+                          currentCategory={currentCategory}
+                          data={categories}>
+                    </Tree>
                 </div>
                 <div className="body">
                     {children}

@@ -2,7 +2,7 @@ import {Node} from './../../components/tree/Node';
 import {createCategory, editCategory, deleteCategory} from './../../actions';
 import {connect} from 'react-redux';
 import React from 'react';
-import {browserHistory} from 'react-router';
+import {redirectToPath} from './../../redirect';
 
 class NodeContainer extends React.Component {
     render() {
@@ -11,7 +11,7 @@ class NodeContainer extends React.Component {
         return (
             <Node {...props}
                   selected={selected}
-                  onClick={() => browserHistory.push(`/category/${props.data.id}/`)}
+                  onClick={() => redirectToPath(`/category/${props.data.id}/`)}
                   onAddCategory={(text) => props.dispatch(createCategory(text, props.data.id))}
                   onEditCategory={(text) => props.dispatch(editCategory(props.data.id, text))}
                   onDeleteCategory={() => tryDeleteCategory(props.data, props.dispatch)}>

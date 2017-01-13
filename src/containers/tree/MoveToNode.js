@@ -2,7 +2,7 @@ import {MoveToNode} from './../../components/tree/MoveToNode';
 import {moveToCategory} from './../../actions';
 import {connect} from 'react-redux';
 import React from 'react';
-import {browserHistory} from 'react-router';
+import {redirectToPath} from './../../redirect';
 
 class NodeContainer extends React.Component {
     render() {
@@ -21,7 +21,7 @@ class NodeContainer extends React.Component {
 
 function onMove(category, task, dispatch) {
     dispatch(moveToCategory(category, task));
-    browserHistory.push(`/category/${category}/task/${task}`);
+    redirectToPath(`/category/${category}/task/${task}`);
 }
 
 export default connect()(NodeContainer);
