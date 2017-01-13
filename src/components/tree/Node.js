@@ -3,17 +3,19 @@ import {InputButton} from '../input-button/input-button';
 
 const nodePropTypes = PropTypes.shape({
     text: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    onAddCategory: PropTypes.func,
-    onEditCategory: PropTypes.func,
-    onDeleteCategory: PropTypes.func,
-    onMoveToCategory: PropTypes.func
+    id: PropTypes.string.isRequired
 });
 
 nodePropTypes.children = PropTypes.arrayOf(nodePropTypes);
 
 export class Node extends React.Component {
-    static propTypes = {data: nodePropTypes};
+    static propTypes = {
+        data: nodePropTypes,
+        onAddCategory: PropTypes.func,
+        onEditCategory: PropTypes.func,
+        onDeleteCategory: PropTypes.func,
+        onMoveToCategory: PropTypes.func
+    };
 
     constructor() {
         super();

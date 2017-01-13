@@ -77,7 +77,7 @@ function treeorizeCategories({present: categories}) {
         }
     });
 
-    return {children: result, text: '', id: ''};
+    return result;
 };
 
 const mapStateToProps = (state, props) => ({
