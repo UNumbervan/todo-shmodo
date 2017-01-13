@@ -9,11 +9,13 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import TodosList from './containers/todos/TodosList';
 import Todo from './containers/todo/Todo';
 import persistState from 'redux-localstorage'
+import {directoryDeletionRedirect} from './store-enhancers/directory-deletion-redirect';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancer = composeEnhancers(
     persistState(),
+    directoryDeletionRedirect()
 );
 
 const store = createStore(reducer, enhancer);
