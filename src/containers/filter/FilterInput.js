@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import {InputButton} from '../../components/input-button/InputButton';
 import {setQueryParams} from './../../redirect';
-import is from 'is-type';
 
 export default class FilterInput extends React.Component {
     static propTypes = {
@@ -55,18 +54,11 @@ export default class FilterInput extends React.Component {
     updateState(substate) {
         this.setState(substate);
 
-        const {showJustDone, filter} = substate;
-        const showDone = is.boolean(showJustDone)
-            ? showJustDone
-            : this.state.showJustDone;
-
-        const filterText = is.string(filter)
-            ? filter
-            : this.state.filter;
+        const {showJustDone = this.state.showJustDone, filter = this.state.filter} = substate;
 
         setQueryParams({
-            showJustDone: showDone || undefined,
-            filter: filterText || undefined
+            showJustDone: showJustDone || undefined,
+            filter: filter || undefined
         });
     }
 }
