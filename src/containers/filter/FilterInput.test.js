@@ -23,7 +23,7 @@ describe('FilterInput', () => {
 
     afterEach(() => {
         jest.resetModules();
-    } );
+    });
 
     describe('rendering', () => {
         it('should display checkbox', () => {
@@ -48,6 +48,8 @@ describe('FilterInput', () => {
             expect(props.placeholder).toBe('Search');
             expect(props.value).toBe(filter);
             expect(inputButton.childAt(0).text()).toBe('Clear');
+
+            //expect(inputButton.is(InputButton)).toBe(true);
         });
     });
 
