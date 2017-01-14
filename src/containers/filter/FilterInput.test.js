@@ -1,12 +1,12 @@
 import {shallow} from 'enzyme';
 import React from 'react';
-import {InputButton} from './../../components/input-button/InputButton';
 
 describe('FilterInput', () => {
     let sut;
     let filter;
     let showJustDone;
     let setQueryParams;
+    let InputButton;
 
     beforeEach(() => {
         filter = 'some filter';
@@ -17,9 +17,9 @@ describe('FilterInput', () => {
             setQueryParams
         }));
 
-        jest.mock('./../../components/input-button/InputButton', () => ({InputButton}));
-
         const FilterInput = require('./FilterInput').default;
+        InputButton = require('./../../components/input-button/InputButton').InputButton;
+
         sut = shallow(<FilterInput filter={filter} showJustDone={showJustDone}/>);
     });
 
