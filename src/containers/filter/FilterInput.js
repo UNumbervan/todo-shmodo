@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {InputButton} from './../../components/input-button/input-button';
+import {InputButton} from '../../components/input-button/InputButton';
 import {setQueryParams} from './../../redirect';
 import is from 'is-type';
 
@@ -66,7 +66,7 @@ export default class FilterInput extends React.Component {
 
         setQueryParams({
             showJustDone: showDone || undefined,
-            filter: filterText
+            filter: filterText || undefined
         });
     }
 }

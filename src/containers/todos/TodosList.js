@@ -3,7 +3,7 @@ import {TodosList} from './../../components/todos/TodosList';
 import {createSelector} from 'reselect';
 import {toggleTodo, addTodo} from './../../actions';
 import React from 'react';
-import {InputButton} from '../../components/input-button/input-button';
+import {InputButton} from '../../components/input-button/InputButton';
 import {redirectToPath} from './../../redirect';
 
 
@@ -18,7 +18,7 @@ const FilterTodoList = (props) => {
             <div className="input-button-wrapper">
                 <InputButton
                     placeholder={'Enter task title'}
-                    onButtonClick={(text) => dispatch(addTodo(text, category))}>
+                    onButtonClick={(text) => text && dispatch(addTodo(text, category))}>
                     Add Task
                 </InputButton>
             </div>

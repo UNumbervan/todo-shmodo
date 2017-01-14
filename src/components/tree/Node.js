@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {InputButton} from '../input-button/input-button';
+import {InputButton} from '../input-button/InputButton';
 
 const nodePropTypes = PropTypes.shape({
     text: PropTypes.string.isRequired,

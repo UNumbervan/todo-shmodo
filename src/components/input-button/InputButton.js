@@ -39,15 +39,16 @@ export class InputButton extends React.Component {
         const isEnter = event.charCode === 13;
 
         if (isEnter) {
-            const {onEnter = () => {}} = this.props;
+            const {
+                onEnter = () => {
+                }
+            } = this.props;
             onEnter(this.state.value);
         }
     }
 
     onButtonClick() {
-        if (this.state.value) {
-            this.props.onButtonClick(this.state.value);
-        }
+        this.props.onButtonClick(this.state.value);
     }
 }
 

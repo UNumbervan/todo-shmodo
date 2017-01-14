@@ -7,7 +7,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Tree} from './components/tree/Tree';
 import Node from './containers/tree/Node';
 import MoveToNode from './containers/tree/MoveToNode';
-import {InputButton} from './components/input-button/input-button';
+import {InputButton} from './components/input-button/InputButton';
 import {connect} from 'react-redux';
 import {createCategory} from './actions';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -36,7 +36,7 @@ const App = ({
             <Progress/>
             <InputButton
                 placeholder={'Enter category title'}
-                onButtonClick={(text) => dispatch(createCategory(text))}>
+                onButtonClick={(text) => text && dispatch(createCategory(text))}>
                 Add Category
             </InputButton>
             <div className="container">
