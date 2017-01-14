@@ -17,6 +17,8 @@ describe('FilterInput', () => {
             setQueryParams
         }));
 
+        jest.mock('./../../components/input-button/InputButton', () => ({InputButton}));
+
         const FilterInput = require('./FilterInput').default;
         sut = shallow(<FilterInput filter={filter} showJustDone={showJustDone}/>);
     });
@@ -49,7 +51,7 @@ describe('FilterInput', () => {
             expect(props.value).toBe(filter);
             expect(inputButton.childAt(0).text()).toBe('Clear');
 
-            //expect(inputButton.is(InputButton)).toBe(true);
+            expect(inputButton.is(InputButton)).toBe(true);
         });
     });
 
