@@ -14,6 +14,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import FilterInput from './containers/filter/FilterInput';
 import UndoRedo from './containers/undo-redo/UndoRedo';
+import Progress from './containers/progress/Progress';
 
 import {createSelector} from 'reselect';
 
@@ -32,6 +33,7 @@ const App = ({
                 iconElementLeft={<UndoRedo/>}
                 iconElementRight={<FilterInput filter={filter} showJustDone={showJustDone === 'true'}/>}
             />
+            <Progress/>
             <InputButton
                 placeholder={'Enter category title'}
                 onButtonClick={(text) => dispatch(createCategory(text))}>
